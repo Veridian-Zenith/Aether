@@ -4,17 +4,19 @@
  */
 
 #include "hal.hpp"
+#include "logger.hpp"
+#include <format>
 #include <iostream>
 
 namespace Aether::HAL {
 
     void outb(uint16_t port, uint8_t val) noexcept {
         // Prototype: In production, this maps to privileged x86 instructions or I/O space
-        std::println("HAL: Writing {:#x} to port {:#x}", val, port);
+        Aether::Log::record(Aether::Log::Level::Info, std::format("HAL: Writing {:#x} to port {:#x}", val, port));
     }
 
     uint8_t inb(uint16_t port) noexcept {
-        std::println("HAL: Reading from port {:#x}", port);
+        Aether::Log::record(Aether::Log::Level::Info, std::format("HAL: Reading from port {:#x}", port));
         return 0;
     }
 
@@ -27,7 +29,7 @@ namespace Aether::HAL {
     }
 
     void registerIrq(uint32_t irq, IrqHandler handler) noexcept {
-        std::println("HAL: Registering handler for IRQ {}", irq);
+        Aether::Log::record(Aether::Log::Level::Info, std::format("HAL: Registering handler for IRQ {}", irq));
         // Store in a global interrupt table
     }
 

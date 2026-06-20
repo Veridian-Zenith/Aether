@@ -7,6 +7,7 @@ Aether uses a native-only driver model. Drivers are written against Aether's HAL
 - **Driver context**: Each driver runs in its own execution context with its own virtual address space and explicit resource grants.
 - **HAL and Gateway**: The HAL owns hardware discovery, interrupt routing, MMIO access, DMA mapping, and device registration. Drivers request operations through capability-checked HAL/Gateway interfaces rather than touching device registers directly.
 - **IOMMU domains**: Each device, or tightly coupled device group, is assigned to an IOMMU domain. The kernel programs the IOMMU so the device can only access IOVA ranges granted by the kernel.
+- **Mock IOMMU for testing**: A software stub implementing the `IommuBackend` interface is provided for development and testing. It allows drivers to be written and tested without requiring real hardware, enabling unit tests and integration tests. The mock implementation is located in `src/arch/x86_64/iommu_backend.cpp`. To extend it for real hardware, implement the `map_page`, `unmap_page`, and `attach_device` methods to interact with the platform's IOMMU driver, program translation tables, and enforce memory isolation as required.
 - **Capability registry**: A driver receives capabilities for the device resources it owns: MMIO windows, interrupt lines, DMA buffers, and shared-memory endpoints. Capabilities are revocable and scoped to a driver instance.
 - **Fault containment**: CPU memory faults, DMA faults, interrupt storms, and driver hangs are contained to the driver context and its device domain.
 
