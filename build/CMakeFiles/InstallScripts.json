@@ -1,8 +1,0 @@
-{
-	"InstallScripts" : 
-	[
-		"/home/dae/VZ_Dev/work/Aether/build/cmake_install.cmake",
-		"/home/dae/VZ_Dev/work/Aether/build/tests/cmake_install.cmake"
-	],
-	"Parallel" : false
-}
