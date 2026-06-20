@@ -1,0 +1,21 @@
+# ninja log v7
+2	2289	1781748267914709103	CMakeFiles/aether_lib.dir/src/capability.cpp.o	b269af4b19648503
+3	978	1781748295223747515	CMakeFiles/aether_lib.dir/src/services/echo.cpp.o	f8d29b4b40c1de6
+3	3309	1781748267916728199	CMakeFiles/aether_lib.dir/src/scheduler.cpp.o	1ec31a26b46b977d
+3	2066	1781748267916290966	CMakeFiles/aether_lib.dir/src/ipc.cpp.o	c79ea815d500a778
+5091	7291	1781748300310754681	CMakeFiles/aether.dir/src/main.cpp.o	5e9aff1d66cc8097
+4	2158	1781748267917143175	CMakeFiles/aether_lib.dir/src/vmm.cpp.o	dc9aee372f39e4ad
+2	3399	1781748267916062180	CMakeFiles/aether_lib.dir/src/gateway.cpp.o	bd0000fcb7d454d1
+978	1022	1781748296197748887	libaether_lib.a	843db1c7f8534f70
+7291	7387	1781748302510788475	aether	9841bc8fa6b50c5b
+4	3600	1781748295224506651	tests/CMakeFiles/run_tests.dir/test_runner.cpp.o	f9124885f31b6f40
+3600	5091	1781748298819752580	tests/run_tests	4dbf2085c2eb27d5
+3	5403	1781748267916496111	CMakeFiles/aether_lib.dir/src/logger.cpp.o	2b1932c23911e27d
+4	5861	1781748707777337348	CMakeFiles/aether_lib.dir/src/services/echo.cpp.o	953ffe60b791ea8
+6	6145	1781748707778337349	CMakeFiles/aether_lib.dir/src/vmm.cpp.o	80f295f41a13ffa7
+3	6247	1781748707776137291	CMakeFiles/aether_lib.dir/src/ipc.cpp.o	ad9ba03a12aa44e7
+2	6780	1781748707774337344	CMakeFiles/aether_lib.dir/src/capability.cpp.o	40886c98ebe417b7
+2	10504	1781748707775839053	CMakeFiles/aether_lib.dir/src/gateway.cpp.o	bd9a9c8ddb04dd6e
+3	10545	1781748707776684457	CMakeFiles/aether_lib.dir/src/scheduler.cpp.o	a6942d4ed7f6b2f0
+3	15129	1781748707776364083	CMakeFiles/aether_lib.dir/src/logger.cpp.o	ff9f967a27b8b536
+12	15391	1781748707784337358	tests/CMakeFiles/run_tests.dir/test_runner.cpp.o	58f6ebabd0185a05
