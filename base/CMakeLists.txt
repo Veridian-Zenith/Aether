@@ -43,19 +43,22 @@ add_custom_target(base-kernel
     DEPENDS base-llvm
 )
 
+# iwd — WiFi (before systemd so networking works early)
+base_pkg(iwd)
+
 # systemd
 add_custom_target(base-systemd
     COMMAND sudo "${BASE}/scripts/systemd.sh"
     WORKING_DIRECTORY "${PROJECT_SOURCE_DIR}"
     COMMENT "Building systemd"
-    DEPENDS base-kernel
+    DEPENDS base-kernel base-iwd
 )
 
 # Final configuration
 add_custom_target(base-config
     COMMAND "${BASE}/scripts/config-system.sh"
     WORKING_DIRECTORY "${PROJECT_SOURCE_DIR}"
-    COMMENT "Configuring system (fish, fstab, hosts, bootloader)"
+    COMMENT "Configuring system (fish, fstab, hosts, bootloader, iwd)"
     DEPENDS base-systemd
 )
 
