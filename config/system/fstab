@@ -1,0 +1,9 @@
+# /etc/fstab — Aether Linux
+# <file>    <mount>    <type>    <options>              <dump> <pass>
+/dev/sda1   /          ext4      defaults,noatime        0      1
+/dev/sda2   swap       swap      sw                      0      0
+proc        /proc      proc      nosuid,noexec,nodev     0      0
+sysfs       /sys       sysfs     nosuid,noexec,nodev     0      0
+devpts      /dev/pts   devpts    gid=5,mode=620          0      0
+tmpfs       /run       tmpfs     nosuid,nodev,mode=0755  0      0
+tmpfs       /tmp       tmpfs     nosuid,nodev            0      0
