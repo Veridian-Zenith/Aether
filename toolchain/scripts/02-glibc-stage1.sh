@@ -1,5 +1,9 @@
 #!/usr/bin/env bash
-# glibc — cross-compiled with clang
+# glibc stage 1 — OPTIONAL fallback for llvm-libc bootstrap
+# Only use this if llvm-libc is missing features that libunwind/libc++ need.
+# In the clean bootstrap path, this script is skipped entirely.
+#
+# If used: glibc is built, llvm-libc is built against it, then glibc is removed.
 set -euo pipefail
 source toolchain/env.sh
 
