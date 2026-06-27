@@ -304,18 +304,18 @@ auto-import = false               # Must manually trust keys
 
 ## Integration with Build Pipeline
 
-The package manager is *not* used for the initial bootstrap (LFS phases 1-3). Instead:
+The package manager is *not* used for the initial bootstrap (phases 1-3). Instead:
 
 ```
-LFS bootstrap (shell + CMake)  →  produces first system with apm
-                                         │
-                                    apm installs itself
-                                         │
-                                    apm builds and installs everything else
-                                         │
-                                    glibc removed, llvm-libc takes over
-                                         │
-                                    LFS scripts retired
+Phase 1-3 (CMake + shell scripts)  →  produces first system with apm
+                                                │
+                                           apm installs itself
+                                                │
+                                           apm builds and installs everything else
+                                                │
+                                           glibc removed, llvm-libc takes over
+                                                │
+                                           Phase 1-3 scripts retired
 ```
 
-After the bootstrap, all updates and new packages go through `apm`. The LFS build scripts are replaced by `apm add-src` with CMake recipes.
+After the bootstrap, all updates and new packages go through `apm`. The build scripts are replaced by `apm add-src` with CMake recipes.

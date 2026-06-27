@@ -1,5 +1,5 @@
 # ==== Phase 3: Base System ====
-# Full system built after chroot entry
+# Full bootable system
 
 set(BASE "${PROJECT_SOURCE_DIR}/base")
 

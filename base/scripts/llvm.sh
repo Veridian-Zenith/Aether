@@ -8,5 +8,5 @@ source toolchain/env.sh
 # This script becomes relevant after chroot to rebuild LLVM natively.
 
 echo "=== LLVM runtime libraries already installed via toolchain ==="
-echo "To rebuild LLVM natively inside chroot, run:"
+echo "To rebuild LLVM natively inside the Aether root context, run:"
 echo "  cmake /path/to/llvm-project -G Ninja -DCMAKE_BUILD_TYPE=Release ..."

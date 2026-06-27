@@ -171,4 +171,4 @@ guard-size        default=4K
 | 4 | Build `ld.so` config for lld as dynamic linker | `config/ld.so.conf` |
 | 5 | Build `ld.so.config` with runtime flags | `config/ld.so.config` |
 | 6 | Test: compile a static hello world against llvm-libc | Proof of no-glibc toolchain |
-| 7 | Test: compile a dynamic hello world running in chroot | Proof of runtime linking |
+| 7 | Test: compile a dynamic hello world running in root context | Proof of runtime linking |

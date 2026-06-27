@@ -9,4 +9,4 @@ mkdir -pv "${LFS}/target/var"/{cache,lib,local,lock,log,mail,opt,run,spool,tmp}
 install -dv -m 0750 "${LFS}/target/root"
 install -dv -m 1777 "${LFS}/target/tmp" "${LFS}/target/var/tmp"
 
-echo "Created LFS directory tree at ${LFS}"
+echo "Created Aether sysroot at ${LFS}"
