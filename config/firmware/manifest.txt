@@ -1,0 +1,34 @@
+# Firmware blobs required for i3-1215U hardware
+# Lines starting with # are comments. Patterns match relative to linux-firmware/
+# Each line is a glob pattern of files to include.
+
+# GPU — Intel Xe / i915 (Alder Lake DG2)
+i915/*
+xe/*
+
+# Display
+intel/display/*
+
+# Audio — SOF firmware
+intel/sof/sof-alderlake*
+intel/sof/sof-icl*
+intel/sof-tplg/*
+
+# WiFi — Intel AX201 (QuZ)
+iwlwifi-QuZ-a0-hr-b0-72.ucode
+iwlwifi-*.ucode
+
+# Bluetooth
+intel/ibt-*
+
+# Management Engine
+intel/me/*
+intel/pmc/*
+intel/ipts/*
+
+# CPU microcode
+intel-ucode/06-9a-*
+
+# GPU TOP / SG1 / GSC
+intel/gsc/*
+intel/telemetry/*
