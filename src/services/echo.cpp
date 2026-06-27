@@ -17,7 +17,7 @@ namespace Aether {
         if(!msg_opt) return;
         IPCMessage msg = *msg_opt;
         
-        IPCMessage reply = { m_pid, MessageType::Response, msg.payload };
+        IPCMessage reply = { m_pid, msg.sender, MessageType::Response, msg.payload };
         m_ipc.sendMessage(msg.sender, reply);
     }
 
