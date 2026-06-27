@@ -1,32 +1,37 @@
 # Aether Linux
 
-A Linux From Scratch distribution built with CMake orchestration.
+A performance-optimised Linux distribution built from scratch, following the LFS methodology.
 
-## Project Structure
+## Stack
 
-```
-lfs/          — Build pipeline: toolchain → temporary tools → base system
-packages/     — Package definitions with version/url/build-metadata
-config/       — Kernel configs, system files, bootloader config
-rootfs/       — Build output (cross-tools + target root filesystem)
-scripts/      — Build orchestration and utility scripts
-```
+- **Kernel**: Linux 6.14 + CachyOS patches (EEVDF/BORE scheduler, x86-64-v3, LTO)
+- **Compiler**: Full LLVM/clang 22 — no GCC
+- **Linker**: mold (host) / lld (system)
+- **libc**: glibc 2.41
+- **Init**: systemd
+- **Shell**: fish 4.7 (dash as POSIX sh fallback)
+- **Coreutils**: uutils (Rust rewrite)
+- **Alternatives**: ripgrep, fd, eza, bat, bsdtar
 
-## Prerequisites
-
-- Linux host (tested on Arch Linux)
-- CMake 3.18+
-- Ninja
-- 10GB+ free disk
-- Root access for chroot operations
-
-## Build
+## Quick Start
 
 ```bash
-cmake -B build -G Ninja -DCMAKE_BUILD_TYPE=Release
-ninja -C build lfs-toolchain   # Phase 1: cross-compiler
-ninja -C build lfs-temporary   # Phase 2: temporary system
-ninja -C build lfs-base        # Phase 3: base system (requires root)
+# Source LLVM cross-compilation environment
+source toolchain/env.sh
+
+# Create directory skeleton
+scripts/setup-dirs.sh
+
+# Phase 1: Cross-compiler toolchain (LLVM-based)
+cmake -B build -G Ninja && ninja -C build toolchain-base
+
+# Phase 2: Temporary system
+ninja -C build temporary-system
+
+# Phase 3: Base system (requires root)
+sudo ninja -C build base-system
 ```
 
-The kernel from `aether-kernel` branch will be integrated in a future release.
+## Legacy
+
+The original Aether micro-kernel lives on the `aether-kernel` branch.

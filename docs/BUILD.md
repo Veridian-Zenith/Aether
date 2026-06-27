@@ -1,52 +1,39 @@
-# Building Aether Linux (LFS)
+# Build Guide
 
 ## Prerequisites
 
-- Arch Linux (or any modern distro)
-- Clang toolchain (host)
+- Arch Linux (or any modern Linux)
+- Clang/LLVM 22 (host)
 - CMake 3.18+, Ninja
+- Rust toolchain (for uutils, ripgrep, fd, eza, bat)
+- wget, git
 - Root access for chroot operations
-- ~10GB free disk space
-- fast internet connection
+- ~20GB free disk
 
-## Quick Start
+## Build Pipeline
 
-### 1. Set up environment
-
-```bash
-source scripts/env.sh
-scripts/setup-dirs.sh
+```
+Phase 1: Toolchain                    Phase 2: Temporary              Phase 3: Base
+┌──────────────────────┐              ┌────────────────────┐          ┌────────────────────┐
+│ linux-headers        │              │ dash               │          │ kernel (CachyOS)   │
+│ glibc                │              │ m4                 │          │ systemd            │
+│ compiler-rt          │  ──────────► │ ncurses            │  ──────► │ fish               │
+│ libunwind            │  make install│ uutils (Rust)      │  chroot  │ ripgrep, fd, eza   │
+│ libc++abi            │  to sysroot  │ mold               │          │ network, bootloader│
+│ libc++               │              │ fish               │          │ config             │
+│ lld                  │              └────────────────────┘          └────────────────────┘
+└──────────────────────┘
 ```
 
-### 2. Build the cross-compiler toolchain (Phase 1)
+## Stage Commands
 
 ```bash
-cmake -B build -G Ninja
-ninja -C build lfs-toolchain
+# Phase 1 — cross-compile LLVM toolchain
+ninja -C build toolchain-base
+
+# Phase 2 — build temporary tools into sysroot
+ninja -C build temporary-system
+
+# Phase 3 — build final bootable system (in chroot)
+sudo ninja -C build base-system
 ```
-
-This builds: binutils pass 1 → gcc pass 1 → linux headers → glibc → binutils pass 2 → gcc pass 2
-
-### 3. Build the temporary system (Phase 2)
-
-```bash
-ninja -C build lfs-temporary
-```
-
-### 4. Build the base system (Phase 3)
-
-```bash
-sudo ninja -C build lfs-base
-```
-
-### 5. Configure the bootloader
-
-```bash
-# After installing to target disk:
-sudo grub-install --boot-directory=/mnt/boot /dev/sda
-```
-
-## References
-
-This project follows the [Linux From Scratch](https://www.linuxfromscratch.org/lfs/) book.
-Each build script documents its corresponding LFS chapter.
